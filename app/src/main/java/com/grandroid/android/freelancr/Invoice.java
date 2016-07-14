@@ -22,6 +22,7 @@ public class Invoice {
     public Invoice(UUID id) {
         mId = id;
         mDateReceived = new Date();
+        mDateCompleted = new Date();
     }
 
     public UUID getId() {

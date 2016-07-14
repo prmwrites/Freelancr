@@ -5,7 +5,7 @@
               android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/customer_title"
+        android:text="@string/customer_title_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="?android:listSeparatorTextViewStyle"/>
@@ -19,8 +19,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/amount_owed"
+        android:text="@string/amount_owed_label"
         style="?android:listSeparatorTextViewStyle"/>
+
+    <EditText
+        android:id="@+id/amount_owed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/invoice_owed_hint"/>
 
     <Button
         android:id="@+id/date_received"
@@ -44,8 +50,4 @@
         android:layout_marginLeft="16dp"
         android:text="@string/received_payment"/>
 
-    
-
-
-    
 </LinearLayout>

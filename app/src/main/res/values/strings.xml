@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Freelancr</string>
     <string name="invoice_customer_hint">Name of customer, or business:</string>
-    <string name="customer_title">Customer:</string>
-    <string name="amount_owed">Payment owed:</string>
+    <string name="invoice_owed_hint">Amount of money owed:</string>
+    <string name="customer_title_label">Customer:</string>
+    <string name="amount_owed_label">Payment owed:</string>
     <string name="date_received">Date began:</string>
     <string name="date_completed">Date completed:</string>
     <string name="received_payment">Received Payment</string>
