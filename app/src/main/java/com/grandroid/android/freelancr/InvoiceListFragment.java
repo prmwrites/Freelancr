@@ -32,12 +32,21 @@ public class InvoiceListFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
     private void updateUI() {
         JobBoard jobBoard = JobBoard.get(getActivity());
         List<Invoice> invoices = jobBoard.getInvoices();
 
-        mAdapter = new InvoiceAdapter(invoices);
-        mInvoiceRecyclerView.setAdapter(mAdapter);
+        if (mAdapter == null) {
+            mAdapter = new InvoiceAdapter(invoices);
+        } else {
+            mInvoiceRecyclerView.setAdapter(mAdapter);
+        }
     }
 
     private class InvoiceHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
