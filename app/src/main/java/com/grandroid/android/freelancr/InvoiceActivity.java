@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class InvoiceActivity extends SingleFragmentActivity {
 
-    public static final String EXTRA_INVOICE_ID = "com.grandroid.android.freelancr.invoice_id";
+    private static final String EXTRA_INVOICE_ID = "com.grandroid.android.freelancr.invoice_id";
 
     public static Intent newIntent(Context packageContext, UUID invoiceId) {
         Intent intent = new Intent(packageContext, InvoiceActivity.class);
@@ -21,6 +21,7 @@ public class InvoiceActivity extends SingleFragmentActivity {
 
     @Override
     protected Fragment createFragment() {
-        return new InvoiceFragment();
+        UUID invoiceId = (UUID) getIntent().getSerializableExtra(EXTRA_INVOICE_ID);
+        return InvoiceFragment.newInstance(invoiceId);
     }
 }

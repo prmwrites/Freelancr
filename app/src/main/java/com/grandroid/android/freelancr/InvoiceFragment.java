@@ -1,5 +1,6 @@
 package com.grandroid.android.freelancr;
 
+import android.app.Activity;
 import android.icu.util.ChineseCalendar;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,6 +21,8 @@ import java.util.UUID;
  */
 public class InvoiceFragment extends android.support.v4.app.Fragment {
 
+    private static final String ARG_INVOICE_ID = "invoice_id";
+
     private Invoice mInvoice;
     private EditText mCustomerField;
     private EditText mAmountOwed;
@@ -27,11 +30,20 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
     private Button mDateCompletedButton;
     private CheckBox mPaidCheckbox;
 
+    public static InvoiceFragment newInstance(UUID invoiceId) {
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_INVOICE_ID, invoiceId);
+
+        InvoiceFragment fragment = new InvoiceFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        UUID invoiceId = (UUID) getActivity().getIntent().getSerializableExtra(InvoiceActivity.EXTRA_INVOICE_ID);
+        UUID invoiceId = (UUID) getArguments().getSerializable(ARG_INVOICE_ID);
         mInvoice = JobBoard.get(getActivity()).getInvoice(invoiceId);
     }
 
