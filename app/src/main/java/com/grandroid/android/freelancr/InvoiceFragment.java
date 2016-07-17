@@ -13,6 +13,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import java.util.UUID;
+
 /**
  * Created by Patrick on 7/13/2016.
  */
@@ -28,7 +30,9 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mInvoice = new Invoice();
+
+        UUID invoiceId = (UUID) getActivity().getIntent().getSerializableExtra(InvoiceActivity.EXTRA_INVOICE_ID);
+        mInvoice = JobBoard.get(getActivity()).getInvoice(invoiceId);
     }
 
     @Override
@@ -81,11 +85,10 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
         mDateCompletedButton.setEnabled(false);
 
         mPaidCheckbox = (CheckBox) v.findViewById(R.id.received_payment);
+        mPaidCheckbox.setChecked(mInvoice.isFinished());
         mPaidCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // Set the crime's solved property
-                mInvoice.setFinished(isChecked);
             }
         });
 
