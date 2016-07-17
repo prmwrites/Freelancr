@@ -75,7 +75,7 @@ public class InvoiceListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            Intent intent = InvoiceActivity.newIntent(getActivity(), mInvoice.getId());
+            Intent intent = InvoicePagerActivity.newIntent(getActivity(), mInvoice.getId());
             startActivity(intent);
         }
     }
