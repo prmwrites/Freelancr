@@ -7,4 +7,5 @@
     <string name="date_received">Date began:</string>
     <string name="date_completed">Date completed:</string>
     <string name="received_payment">Received Payment</string>
+    <string name="date_picker_title">Date received:</string>
 </resources>

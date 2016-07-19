@@ -3,6 +3,7 @@ package com.grandroid.android.freelancr;
 import android.app.Activity;
 import android.icu.util.ChineseCalendar;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import java.util.UUID;
 public class InvoiceFragment extends android.support.v4.app.Fragment {
 
     private static final String ARG_INVOICE_ID = "invoice_id";
+    private static final String DIALOG_DATE = "DialogDate";
 
     private Invoice mInvoice;
     private EditText mCustomerField;
@@ -91,7 +93,14 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
 
         mDateReceivedButton = (Button) v.findViewById(R.id.date_received);
         mDateReceivedButton.setText(mInvoice.getDateReceived().toString());
-        mDateReceivedButton.setEnabled(false);
+        mDateReceivedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                DatePickerFragment dialog = new DatePickerFragment();
+                dialog.show(manager, DIALOG_DATE);
+            }
+        });
 
         mDateCompletedButton = (Button) v.findViewById(R.id.date_completed);;
         mDateCompletedButton.setEnabled(false);
