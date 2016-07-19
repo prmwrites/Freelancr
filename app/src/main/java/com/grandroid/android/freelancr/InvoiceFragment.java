@@ -1,6 +1,7 @@
 package com.grandroid.android.freelancr;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.icu.util.ChineseCalendar;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -94,7 +96,7 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
         });
 
         mDateReceivedButton = (Button) v.findViewById(R.id.date_received);
-        mDateReceivedButton.setText(mInvoice.getDateReceived().toString());
+        updateDate();
         mDateReceivedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,5 +119,22 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
         });
 
         return v;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        if (requestCode == REQUEST_DATE) {
+            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mInvoice.setDateReceived(date);
+            updateDate();
+        }
+    }
+
+    private void updateDate() {
+        mDateReceivedButton.setText(mInvoice.getDateReceived().toString());
     }
 }
