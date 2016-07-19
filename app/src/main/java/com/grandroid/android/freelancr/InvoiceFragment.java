@@ -25,6 +25,8 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
     private static final String ARG_INVOICE_ID = "invoice_id";
     private static final String DIALOG_DATE = "DialogDate";
 
+    private static final int REQUEST_DATE = 0;
+
     private Invoice mInvoice;
     private EditText mCustomerField;
     private EditText mAmountOwed;
@@ -97,7 +99,8 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager manager = getFragmentManager();
-                DatePickerFragment dialog = new DatePickerFragment();
+                DatePickerFragment dialog = DatePickerFragment.newInstance(mInvoice.getDateReceived());
+                dialog.setTargetFragment(InvoiceFragment.this, REQUEST_DATE);
                 dialog.show(manager, DIALOG_DATE);
             }
         });
