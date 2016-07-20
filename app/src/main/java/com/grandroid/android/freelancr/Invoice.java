@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Invoice {
     private UUID mId;
     private String mCustomer;
-    private Currency mOwed;
+    private String mOwed;
     private Date mDateReceived;
     private Date mDateCompleted;
     private boolean mFinished;
@@ -37,11 +37,11 @@ public class Invoice {
         mCustomer = customer;
     }
 
-    public Currency getOwed() {
+    public String getOwed() {
         return mOwed;
     }
 
-    public void setOwed(Currency owed) {
+    public void setOwed(String owed) {
         mOwed = owed;
     }
 

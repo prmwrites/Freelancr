@@ -83,6 +83,7 @@ public class InvoiceListFragment extends Fragment {
 
         private Invoice mInvoice;
         private TextView mCustomerTextView;
+        private TextView mAmountTextView;
         private TextView mDateTextView;
         private CheckBox mFinishedCheckBox;
 
@@ -91,6 +92,7 @@ public class InvoiceListFragment extends Fragment {
             itemView.setOnClickListener(this);
 
             mCustomerTextView = (TextView) itemView.findViewById(R.id.list_item_invoice_customer_text_view);
+            mAmountTextView = (TextView) itemView.findViewById(R.id.list_item_invoice_amount_text_view);
             mDateTextView = (TextView) itemView.findViewById(R.id.list_item_invoice_date_text_view);
             mFinishedCheckBox = (CheckBox) itemView.findViewById(R.id.list_item_invoice_finished_check_box);
         }
@@ -98,6 +100,7 @@ public class InvoiceListFragment extends Fragment {
         public void bindInvoice(Invoice invoice) {
             mInvoice = invoice;
             mCustomerTextView.setText(mInvoice.getCustomer());
+            mAmountTextView.setText(mInvoice.getOwed());
             mDateTextView.setText(mInvoice.getDateReceived().toString());
             mFinishedCheckBox.setChecked(mInvoice.isFinished());
         }

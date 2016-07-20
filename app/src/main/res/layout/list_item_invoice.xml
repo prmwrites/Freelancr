@@ -21,11 +21,19 @@
         tools:text="Invoice Title"/>
 
     <TextView
-        android:id="@+id/list_item_invoice_date_text_view"
+        android:id="@+id/list_item_invoice_amount_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/list_item_invoice_finished_check_box"
         android:layout_below="@id/list_item_invoice_customer_text_view"
+        tools:text="Invoice Amount"/>
+
+    <TextView
+        android:id="@+id/list_item_invoice_date_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/list_item_invoice_finished_check_box"
+        android:layout_below="@id/list_item_invoice_amount_text_view"
         android:padding="4dp"
         tools:text="Invoice Date"/>
 

@@ -76,9 +76,9 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
             }
         });
 
-        mCustomerField = (EditText) v.findViewById(R.id.amount_owed);
-        mCustomerField.setText(mInvoice.getCustomer());
-        mCustomerField.addTextChangedListener(new TextWatcher() {
+        mAmountOwed = (EditText) v.findViewById(R.id.amount_owed);
+        mAmountOwed.setText(mInvoice.getOwed());
+        mAmountOwed.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // This space left blank
@@ -86,7 +86,7 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mInvoice.setCustomer(s.toString());
+                mInvoice.setOwed(s.toString());
             }
 
             @Override
