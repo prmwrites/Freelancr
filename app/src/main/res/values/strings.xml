@@ -8,4 +8,6 @@
     <string name="date_completed">Date completed:</string>
     <string name="received_payment">Received Payment</string>
     <string name="date_picker_title">Date received:</string>
+    <string name="new_crime">New Crime</string>
+
 </resources>
