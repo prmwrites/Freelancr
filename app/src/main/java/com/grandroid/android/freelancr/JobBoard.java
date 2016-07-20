@@ -23,12 +23,10 @@ public class JobBoard {
 
     private JobBoard(Context context) {
         mInvoices = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            Invoice invoice = new Invoice();
-            invoice.setCustomer("Customer #" + i);
-            invoice.setFinished(i % 2 == 0); // Every other one
-            mInvoices.add(invoice);
-        }
+    }
+
+    public void addInvoice(Invoice c) {
+        mInvoices.add(c);
     }
 
     public List<Invoice> getInvoices() {
