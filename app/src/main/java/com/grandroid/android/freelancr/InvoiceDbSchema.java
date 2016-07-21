@@ -13,8 +13,8 @@ public class InvoiceDbSchema {
             public static final String UUID = "uuid";
             public static final String CUSTOMER = "customer";
             public static final String OWED = "owed";
-            public static final String DATE_RECEIVED = "date received";
-            public static final String DATE_COMPLETED = "date completed";
+            public static final String DATE_RECEIVED = "date_received";
+            public static final String DATE_COMPLETED = "date_completed";
             public static final String FINISHED = "finished";
         }
     }

@@ -52,5 +52,12 @@ public class InvoicePagerActivity extends AppCompatActivity {
                 return mInvoices.size();
             }
         });
+
+        for (int i = 0; i < mInvoices.size(); i++) {
+            if (mInvoices.get(i).getId().equals(invoiceId)) {
+                mViewPager.setCurrentItem(i);
+                break;
+            }
+        }
     }
 }

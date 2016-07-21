@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class InvoiceBaseHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
-    private static final String DATABASE_NAME = "invoicebase.db";
+    private static final String DATABASE_NAME = "invoiceBase.db";
 
     public InvoiceBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -17,13 +17,15 @@ public class InvoiceBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table" + InvoiceDbSchema.InvoiceTable.NAME + "(" + " _id integer primary key autoincrement, "
-                + InvoiceDbSchema.InvoiceTable.Cols.UUID + ", "
-                + InvoiceDbSchema.InvoiceTable.Cols.CUSTOMER + ", "
-                + InvoiceDbSchema.InvoiceTable.Cols.OWED + ", "
-                + InvoiceDbSchema.InvoiceTable.Cols.DATE_RECEIVED + ", "
-                + InvoiceDbSchema.InvoiceTable.Cols.DATE_COMPLETED + ", "
-                + InvoiceDbSchema.InvoiceTable.Cols.FINISHED + ")");
+        db.execSQL("create table " + InvoiceDbSchema.InvoiceTable.NAME + "(" +
+                " _id integer primary key autoincrement, " +
+                InvoiceDbSchema.InvoiceTable.Cols.UUID + ", " +
+                InvoiceDbSchema.InvoiceTable.Cols.CUSTOMER + ", " +
+                InvoiceDbSchema.InvoiceTable.Cols.OWED + ", " +
+                InvoiceDbSchema.InvoiceTable.Cols.DATE_RECEIVED + ", " +
+                InvoiceDbSchema.InvoiceTable.Cols.DATE_COMPLETED + ", " +
+                InvoiceDbSchema.InvoiceTable.Cols.FINISHED +
+                ")");
     }
 
     @Override
