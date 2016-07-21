@@ -54,6 +54,13 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+
+        JobBoard.get(getActivity()).updateInvoice(mInvoice);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_invoice, container, false);
 

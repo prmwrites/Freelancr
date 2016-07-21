@@ -58,5 +58,7 @@ public class JobBoard {
         values.put(InvoiceDbSchema.InvoiceTable.Cols.DATE_RECEIVED, invoice.getDateReceived().getTime());
         values.put(InvoiceDbSchema.InvoiceTable.Cols.DATE_COMPLETED, invoice.getDateCompleted().getTime());
         values.put(InvoiceDbSchema.InvoiceTable.Cols.FINISHED, invoice.isFinished() ? 1 : 0);
+
+    return values;
     }
 }
