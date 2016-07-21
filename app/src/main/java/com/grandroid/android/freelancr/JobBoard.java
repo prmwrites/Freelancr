@@ -1,6 +1,7 @@
 package com.grandroid.android.freelancr;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,8 @@ public class JobBoard {
 
     private static JobBoard sJobBoard;
     private List<Invoice> mInvoices;
+    private Context mContext;
+    private SQLiteDatabase mDatabase;
 
     public static JobBoard get(Context context) {
         if (sJobBoard == null) {
@@ -22,6 +25,8 @@ public class JobBoard {
     }
 
     private JobBoard(Context context) {
+        mContext = context.getApplicationContext();
+        mDatabase = new InvoiceBaseHelper(mContext).getWritableDatabase();
         mInvoices = new ArrayList<>();
     }
 

@@ -6,7 +6,7 @@ import java.util.Currency;
  * Created by Patrick on 7/20/2016.
  */
 public class InvoiceDbSchema {
-    public static final class CrimeTable {
+    public static final class InvoiceTable {
         public static final String NAME = "invoices";
 
         public static final class Cols {
