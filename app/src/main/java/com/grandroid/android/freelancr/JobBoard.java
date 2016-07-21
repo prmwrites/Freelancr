@@ -37,11 +37,35 @@ public class JobBoard {
     }
 
     public List<Invoice> getInvoices() {
-        return new ArrayList<>();
+        List<Invoice> invoices = new ArrayList<>();
+
+        InvoiceCursorWrapper cursor = queryInvoices(null, null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                invoices.add(cursor.getInvoice());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+        return invoices;
     }
 
     public Invoice getInvoice(UUID id) {
-        return null;
+        InvoiceCursorWrapper cursor = queryInvoices(InvoiceDbSchema.InvoiceTable.Cols.UUID + " = ?", new String[] {id.toString() });
+
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+
+            cursor.moveToFirst();
+            return cursor.getInvoice();
+        } finally {
+            cursor.close();
+        }
     }
 
     public void updateInvoice(Invoice invoice) {
@@ -63,8 +87,8 @@ public class JobBoard {
     return values;
     }
 
-    private Cursor queryInvoices(String whereClause, String[] whereArgs) {
+    private InvoiceCursorWrapper queryInvoices(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(InvoiceDbSchema.InvoiceTable.NAME, null, whereClause, whereArgs, null, null, null);
-    return cursor;
+    return new InvoiceCursorWrapper(cursor);
     }
 }
