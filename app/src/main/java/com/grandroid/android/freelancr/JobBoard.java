@@ -2,6 +2,7 @@ package com.grandroid.android.freelancr;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -60,5 +61,10 @@ public class JobBoard {
         values.put(InvoiceDbSchema.InvoiceTable.Cols.FINISHED, invoice.isFinished() ? 1 : 0);
 
     return values;
+    }
+
+    private Cursor queryInvoices(String whereClause, String[] whereArgs) {
+        Cursor cursor = mDatabase.query(InvoiceDbSchema.InvoiceTable.NAME, null, whereClause, whereArgs, null, null, null);
+    return cursor;
     }
 }
