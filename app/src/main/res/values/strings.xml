@@ -9,5 +9,6 @@
     <string name="received_payment">Received Payment</string>
     <string name="date_picker_title">Date received:</string>
     <string name="new_invoice">New Invoice</string>
+    <string name="delete_invoice">Delete Invoice</string>
 
 </resources>

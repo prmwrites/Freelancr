@@ -1,6 +1,7 @@
 package com.grandroid.android.freelancr;
 
 import android.content.Intent;
+import android.graphics.Movie;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,11 +12,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Patrick on 7/14/2016.
@@ -23,6 +27,7 @@ import java.util.List;
 public class InvoiceListFragment extends Fragment {
     private RecyclerView mInvoiceRecyclerView;
     private InvoiceAdapter mAdapter;
+    private Invoice mInvoice;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,6 @@ public class InvoiceListFragment extends Fragment {
 
         mInvoiceRecyclerView = (RecyclerView) view.findViewById(R.id.invoice_recycler_view);
         mInvoiceRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         updateUI();
 
         return view;
@@ -46,6 +50,7 @@ public class InvoiceListFragment extends Fragment {
     public void onResume() {
         super.onResume();
         updateUI();
+        // Toast.makeText(getActivity(), "onResume called", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -75,6 +80,8 @@ public class InvoiceListFragment extends Fragment {
         if (mAdapter == null) {
             mAdapter = new InvoiceAdapter(invoices);
         } else {
+            mAdapter.notifyDataSetChanged();
+            mAdapter.setInvoices(invoices);
             mInvoiceRecyclerView.setAdapter(mAdapter);
         }
     }
@@ -137,5 +144,10 @@ public class InvoiceListFragment extends Fragment {
         public int getItemCount() {
             return mInvoices.size();
         }
+
+        public void setInvoices(List<Invoice> invoices) {
+            mInvoices = invoices;
+        }
     }
+
 }

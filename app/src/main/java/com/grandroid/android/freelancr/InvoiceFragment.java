@@ -8,6 +8,9 @@ import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -26,15 +29,17 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
 
     private static final String ARG_INVOICE_ID = "invoice_id";
     private static final String DIALOG_DATE = "DialogDate";
+    private static final String DIALOG_DATE2 = "DialogDate";
 
     private static final int REQUEST_DATE = 0;
+    private static final int REQUEST_DATE2 = 1;
 
     private Invoice mInvoice;
     private EditText mCustomerField;
     private EditText mAmountOwed;
     private Button mDateReceivedButton;
     private Button mDateCompletedButton;
-    private CheckBox mPaidCheckbox;
+    private CheckBox mFinishedCheckBox;
 
     public static InvoiceFragment newInstance(UUID invoiceId) {
         Bundle args = new Bundle();
@@ -48,15 +53,36 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
         UUID invoiceId = (UUID) getArguments().getSerializable(ARG_INVOICE_ID);
         mInvoice = JobBoard.get(getActivity()).getInvoice(invoiceId);
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_invoice_list_item, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.menu_item_delete_invoice:
+                UUID invoiceId = mInvoice.getId();
+                JobBoard.get(getActivity()).deleteInvoice(invoiceId);
+                getActivity().finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
-
         JobBoard.get(getActivity()).updateInvoice(mInvoice);
     }
 
@@ -115,13 +141,23 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
         });
 
         mDateCompletedButton = (Button) v.findViewById(R.id.date_completed);;
-        mDateCompletedButton.setEnabled(false);
+        updateDate();
+        mDateCompletedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                DatePickerFragment dialog = DatePickerFragment.newInstance(mInvoice.getDateCompleted());
+                dialog.setTargetFragment(InvoiceFragment.this, REQUEST_DATE2);
+                dialog.show(manager, DIALOG_DATE2);
+            }
+        });
 
-        mPaidCheckbox = (CheckBox) v.findViewById(R.id.received_payment);
-        mPaidCheckbox.setChecked(mInvoice.isFinished());
-        mPaidCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mFinishedCheckBox = (CheckBox) v.findViewById(R.id.received_payment);
+        mFinishedCheckBox.setChecked(mInvoice.isFinished());
+        mFinishedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mInvoice.setFinished(isChecked);
             }
         });
 

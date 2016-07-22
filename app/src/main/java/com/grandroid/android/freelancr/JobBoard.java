@@ -36,6 +36,12 @@ public class JobBoard {
         mDatabase.insert(InvoiceDbSchema.InvoiceTable.NAME, null, values);
     }
 
+    public void deleteInvoice(UUID invoiceId) {
+        String uuidString = invoiceId.toString();
+        mDatabase.delete(InvoiceDbSchema.InvoiceTable.NAME, InvoiceDbSchema.InvoiceTable.Cols.UUID + " = ?", new String[] {uuidString});
+
+    }
+
     public List<Invoice> getInvoices() {
         List<Invoice> invoices = new ArrayList<>();
 
