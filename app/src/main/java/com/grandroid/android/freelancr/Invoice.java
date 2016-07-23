@@ -11,6 +11,8 @@ public class Invoice {
     private UUID mId;
     private String mCustomer;
     private String mOwed;
+    private String mPhoneNumber;
+    private String mEmailAddress;
     private Date mDateReceived;
     private Date mDateCompleted;
     private boolean mFinished;
@@ -43,6 +45,22 @@ public class Invoice {
 
     public void setOwed(String owed) {
         mOwed = owed;
+    }
+
+    public String getPhoneNumber() {
+        return mPhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        mPhoneNumber = phoneNumber;
+    }
+
+    public String getEmailAddress() {
+        return mEmailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        mEmailAddress = emailAddress;
     }
 
     public Date getDateReceived() {

@@ -10,5 +10,9 @@
     <string name="date_picker_title">Date received:</string>
     <string name="new_invoice">New Invoice</string>
     <string name="delete_invoice">Delete Invoice</string>
+    <string name="email_address_hint">Enter the customer\'s email address</string>
+    <string name="phone_number_hint">Enter the customer\'s phone number</string>
+    <string name="email_label">Email address:</string>
+    <string name="phone_label">Phone number:</string>
 
 </resources>

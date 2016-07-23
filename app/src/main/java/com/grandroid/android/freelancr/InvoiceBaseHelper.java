@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Patrick on 7/20/2016.
  */
 public class InvoiceBaseHelper extends SQLiteOpenHelper {
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
     private static final String DATABASE_NAME = "invoiceBase.db";
 
     public InvoiceBaseHelper(Context context) {
@@ -22,6 +22,8 @@ public class InvoiceBaseHelper extends SQLiteOpenHelper {
                 InvoiceDbSchema.InvoiceTable.Cols.UUID + ", " +
                 InvoiceDbSchema.InvoiceTable.Cols.CUSTOMER + ", " +
                 InvoiceDbSchema.InvoiceTable.Cols.OWED + ", " +
+                InvoiceDbSchema.InvoiceTable.Cols.PHONE + ", " +
+                InvoiceDbSchema.InvoiceTable.Cols.EMAIL + ", " +
                 InvoiceDbSchema.InvoiceTable.Cols.DATE_RECEIVED + ", " +
                 InvoiceDbSchema.InvoiceTable.Cols.DATE_COMPLETED + ", " +
                 InvoiceDbSchema.InvoiceTable.Cols.FINISHED +

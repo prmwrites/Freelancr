@@ -37,6 +37,8 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
     private Invoice mInvoice;
     private EditText mCustomerField;
     private EditText mAmountOwed;
+    private EditText mPhoneNumber;
+    private EditText mEmailAddress;
     private Button mDateReceivedButton;
     private Button mDateCompletedButton;
     private CheckBox mFinishedCheckBox;
@@ -120,6 +122,44 @@ public class InvoiceFragment extends android.support.v4.app.Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mInvoice.setOwed(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // This one too
+            }
+        });
+
+        mPhoneNumber = (EditText) v.findViewById(R.id.phone_number);
+        mPhoneNumber.setText(mInvoice.getPhoneNumber());
+        mPhoneNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // This space left blank
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mInvoice.setPhoneNumber(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // This one too
+            }
+        });
+
+        mEmailAddress = (EditText) v.findViewById(R.id.email_address);
+        mEmailAddress.setText(mInvoice.getEmailAddress());
+        mEmailAddress.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // This space left blank
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mInvoice.setEmailAddress(s.toString());
             }
 
             @Override

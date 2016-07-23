@@ -86,6 +86,8 @@ public class JobBoard {
         values.put(InvoiceDbSchema.InvoiceTable.Cols.UUID, invoice.getId().toString());
         values.put(InvoiceDbSchema.InvoiceTable.Cols.CUSTOMER, invoice.getCustomer());
         values.put(InvoiceDbSchema.InvoiceTable.Cols.OWED, invoice.getOwed());
+        values.put(InvoiceDbSchema.InvoiceTable.Cols.PHONE, invoice.getPhoneNumber());
+        values.put(InvoiceDbSchema.InvoiceTable.Cols.EMAIL, invoice.getEmailAddress());
         values.put(InvoiceDbSchema.InvoiceTable.Cols.DATE_RECEIVED, invoice.getDateReceived().getTime());
         values.put(InvoiceDbSchema.InvoiceTable.Cols.DATE_COMPLETED, invoice.getDateCompleted().getTime());
         values.put(InvoiceDbSchema.InvoiceTable.Cols.FINISHED, invoice.isFinished() ? 1 : 0);

@@ -18,6 +18,8 @@ public class InvoiceCursorWrapper extends CursorWrapper {
         String uuidString = getString(getColumnIndex(InvoiceDbSchema.InvoiceTable.Cols.UUID));
         String customer = getString(getColumnIndex(InvoiceDbSchema.InvoiceTable.Cols.CUSTOMER));
         String owed = getString(getColumnIndex(InvoiceDbSchema.InvoiceTable.Cols.OWED));
+        String phone = getString(getColumnIndex(InvoiceDbSchema.InvoiceTable.Cols.PHONE));
+        String email = getString(getColumnIndex(InvoiceDbSchema.InvoiceTable.Cols.EMAIL));
         long date_received = getLong(getColumnIndex(InvoiceDbSchema.InvoiceTable.Cols.DATE_RECEIVED));
         long date_completed = getLong(getColumnIndex(InvoiceDbSchema.InvoiceTable.Cols.DATE_COMPLETED));
         int isFinished = getInt(getColumnIndex(InvoiceDbSchema.InvoiceTable.Cols.FINISHED));
@@ -25,6 +27,8 @@ public class InvoiceCursorWrapper extends CursorWrapper {
         Invoice invoice = new Invoice(UUID.fromString(uuidString));
         invoice.setCustomer(customer);
         invoice.setOwed(owed);
+        invoice.setPhoneNumber(phone);
+        invoice.setEmailAddress(email);
         invoice.setDateReceived(new Date(date_received));
         invoice.setDateCompleted(new Date(date_completed));
         invoice.setFinished(isFinished != 0);
